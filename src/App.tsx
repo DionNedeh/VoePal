@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Check, Download, Mic, MicOff, Pause, RotateCcw, Save, Sparkles, Trash2, Wifi, WifiOff } from 'lucide-react';
+import { Check, Download, Mic, MicOff, Pause, RotateCcw, Save, Sparkles, Trash2, Volume2, Wifi, WifiOff } from 'lucide-react';
 import { createResponse, detectEmotion } from './engine';
 import { OptionGroup } from './components/OptionGroup';
 import { VoeRobot } from './components/VoeRobot';
@@ -25,12 +25,12 @@ import {
   saveCustomization,
   saveProgress
 } from './storage';
-import type { CheckIn, Customization, EmotionResult, ProgressState } from './types';
+import type { CheckIn, Customization, ProgressState } from './types';
 
-const starterText = 'My day is great! How is yours?';
+const sampleText = 'My day is great! How is yours?';
 
 export function App() {
-  const [transcript, setTranscript] = useState(starterText);
+  const [transcript, setTranscript] = useState('');
   const [customization, setCustomization] = useState<Customization>(defaultCustomization);
   const [checkIns, setCheckIns] = useState<CheckIn[]>([]);
   const [progress, setProgress] = useState<ProgressState>({ xp: 0, parts: 0, streak: 0, lastCheckInDate: null });
@@ -95,7 +95,6 @@ export function App() {
       recorder.start();
       setRecording(true);
       setNotice('Recording locally. Nothing is uploaded.');
-      startSpeechRecognition();
     } catch {
       setNotice('Microphone permission was not available. Type the check-in instead.');
     }
@@ -103,10 +102,19 @@ export function App() {
 
   function stopRecording() {
     recorderRef.current?.stop();
-    recognitionRef.current?.stop();
     setRecording(false);
-    setSpeechActive(false);
-    setNotice('Recording saved locally. Edit the transcript before saving the check-in.');
+    setNotice('Recording saved locally. Tap Dictate or type to create the transcript.');
+  }
+
+  function toggleDictation() {
+    if (speechActive) {
+      recognitionRef.current?.stop();
+      setSpeechActive(false);
+      setNotice('Dictation stopped. Edit the transcript before saving.');
+      return;
+    }
+
+    startSpeechRecognition();
   }
 
   function startSpeechRecognition() {
@@ -125,7 +133,10 @@ export function App() {
       for (let i = 0; i < event.results.length; i += 1) {
         speechText += `${event.results[i][0].transcript} `;
       }
-      setTranscript(speechText.trim());
+      const nextTranscript = speechText.trim();
+      if (nextTranscript) {
+        setTranscript(nextTranscript);
+      }
     };
     recognition.onerror = () => {
       setSpeechActive(false);
@@ -136,6 +147,7 @@ export function App() {
     recognitionRef.current = recognition;
     recognition.start();
     setSpeechActive(true);
+    setNotice('Listening for dictation. Speak the check-in, then tap Dictate again to stop.');
   }
 
   async function saveCheckIn() {
@@ -226,6 +238,10 @@ export function App() {
                     {recording ? <Pause size={20} /> : <Mic size={20} />}
                     <span>{recording ? 'Stop' : 'Record'}</span>
                   </button>
+                  <button className={speechActive ? 'secondary-action active' : 'secondary-action'} disabled={!speechSupported || recording} onClick={toggleDictation} type="button">
+                    <Volume2 size={20} />
+                    <span>{speechActive ? 'Stop dictation' : 'Dictate'}</span>
+                  </button>
                   <button className="icon-action" onClick={() => setTranscript('')} title="Clear transcript" type="button">
                     <RotateCcw size={20} />
                   </button>
@@ -234,11 +250,18 @@ export function App() {
                   </button>
                 </div>
                 <p className="microcopy">
-                  {speechSupported ? 'Dictation may fill the transcript when the browser supports it.' : 'Dictation is unavailable here, so type or edit the transcript.'}
+                  {speechSupported
+                    ? 'On phones, Record saves audio and Dictate fills the transcript as a separate mic mode.'
+                    : 'Dictation is unavailable in this browser, so type or edit the transcript.'}
                 </p>
                 <label className="transcript-box">
                   <span>Editable transcript</span>
-                  <textarea value={transcript} onChange={(event) => setTranscript(event.target.value)} rows={7} />
+                  <textarea
+                    value={transcript}
+                    onChange={(event) => setTranscript(event.target.value)}
+                    placeholder={sampleText}
+                    rows={7}
+                  />
                 </label>
                 {audioUrl ? (
                   <audio className="audio-player" controls src={audioUrl}>
@@ -263,6 +286,9 @@ export function App() {
                   <span>VoePal says</span>
                   <p>{previewResponse}</p>
                 </div>
+                <button className="text-action full-width" onClick={() => setTranscript(sampleText)} type="button">
+                  Try happy sample
+                </button>
                 <button className="save-action" onClick={saveCheckIn} type="button">
                   <Save size={20} />
                   <span>Save check-in</span>
