@@ -10,6 +10,7 @@ import {
   defaultCustomization,
   faceOptions,
   getRoomColor,
+  mouthOptions,
   roomOptions,
   shellOptions
 } from './options';
@@ -304,6 +305,7 @@ export function App() {
                 </div>
                 <OptionGroup label="Shell" value={customization.shell} options={shellOptions} onChange={(value) => updateCustomization('shell', value)} />
                 <OptionGroup label="Face" value={customization.face} options={faceOptions} onChange={(value) => updateCustomization('face', value)} />
+                <OptionGroup label="Mouth" value={customization.mouth} options={mouthOptions} onChange={(value) => updateCustomization('mouth', value)} />
                 <OptionGroup label="Antenna" value={customization.antenna} options={antennaOptions} onChange={(value) => updateCustomization('antenna', value)} />
                 <OptionGroup label="Arms" value={customization.arms} options={armOptions} onChange={(value) => updateCustomization('arms', value)} />
                 <OptionGroup label="Accessory" value={customization.accessory} options={accessoryOptions} onChange={(value) => updateCustomization('accessory', value)} />
