@@ -27,6 +27,7 @@ export function VoeRobot({ customization, animation }: VoeRobotProps) {
         <rect className="body" x="72" y="112" width="216" height="188" rx="66" fill={shell} />
         <rect className="faceplate" x="108" y="148" width="144" height="80" rx="32" />
         {renderFace(customization.face)}
+        {renderMouth(customization.mouth)}
         {renderAccessory(customization.accessory)}
         <path className="belly-line" d="M132 252h96" />
         <g className="feet">
@@ -48,12 +49,7 @@ function renderAntenna(kind: string) {
         </>
       );
     case 'bolt':
-      return (
-        <>
-          <path d="M180 108V76" />
-          <path className="antenna-fill" d="M168 58h24l-16 22h20l-30 34 10-28h-18z" />
-        </>
-      );
+      return <path className="antenna-fill" d="M170 42h30l-20 29h24l-38 46 13-37h-22z" />;
     case 'twin':
       return (
         <>
@@ -107,8 +103,8 @@ function renderArms(kind: string, shell: string) {
       <>
         <path className="arm-line" d="M78 204H42" />
         <path className="arm-line" d="M282 204h36" />
-        <path className="claw" d="M36 190l-18 14 18 14" />
-        <path className="claw" d="M324 190l18 14-18 14" />
+        <path className="claw" d="M18 190l18 14-18 14" />
+        <path className="claw" d="M342 190l-18 14 18 14" />
       </>
     );
   }
@@ -137,8 +133,10 @@ function renderFace(kind: string) {
     case 'visor':
       return (
         <>
-          <path className="eye-line" d="M140 188h80" />
-          <path className="mouth" d="M150 210c20 12 40 12 60 0" />
+          <path className="visor-line" d="M132 188h96" />
+          <circle className="visor-dot" cx="148" cy="188" r="8" />
+          <circle className="visor-dot" cx="212" cy="188" r="8" />
+          <path className="visor-glint" d="M130 170h34" />
         </>
       );
     case 'sleepy':
@@ -146,7 +144,6 @@ function renderFace(kind: string) {
         <>
           <path className="eye-line" d="M136 184c12 10 24 10 36 0" />
           <path className="eye-line" d="M188 184c12 10 24 10 36 0" />
-          <path className="mouth" d="M158 210h44" />
         </>
       );
     case 'spark':
@@ -154,7 +151,6 @@ function renderFace(kind: string) {
         <>
           <path className="spark-eye" d="M150 170l8 14 14 8-14 8-8 14-8-14-14-8 14-8z" />
           <path className="spark-eye" d="M210 170l8 14 14 8-14 8-8 14-8-14-14-8 14-8z" />
-          <path className="mouth" d="M154 214c18 16 34 16 52 0" />
         </>
       );
     case 'retro':
@@ -162,7 +158,6 @@ function renderFace(kind: string) {
         <>
           <rect className="retro-eye" x="132" y="176" width="34" height="24" rx="8" />
           <rect className="retro-eye" x="194" y="176" width="34" height="24" rx="8" />
-          <path className="mouth" d="M154 216h52" />
         </>
       );
     default:
@@ -170,9 +165,23 @@ function renderFace(kind: string) {
         <>
           <circle className="eye" cx="150" cy="188" r="12" />
           <circle className="eye" cx="210" cy="188" r="12" />
-          <path className="mouth" d="M152 214c18 18 38 18 56 0" />
         </>
       );
+  }
+}
+
+function renderMouth(kind = 'smile') {
+  switch (kind) {
+    case 'flat':
+      return <path className="mouth" d="M154 216h52" />;
+    case 'o':
+      return <circle className="mouth mouth-circle" cx="180" cy="216" r="12" />;
+    case 'beam':
+      return <rect className="mouth-fill" x="148" y="207" width="64" height="20" rx="10" />;
+    case 'zigzag':
+      return <path className="mouth" d="M148 218l16-10 16 10 16-10 16 10" />;
+    default:
+      return <path className="mouth" d="M152 214c18 18 38 18 56 0" />;
   }
 }
 
@@ -181,9 +190,9 @@ function renderAccessory(kind: string) {
     case 'star':
       return <path className="accessory" d="M248 244l8 16 18 2-13 12 4 18-17-9-16 9 3-18-13-12 18-2z" />;
     case 'scarf':
-      return <path className="scarf" d="M112 236c48 20 92 20 136 0v24c-44 16-88 16-136 0z" />;
+      return <path className="scarf" d="M112 254c48 20 92 20 136 0v24c-44 16-88 16-136 0z" />;
     case 'badge':
-      return <rect className="badge" x="222" y="246" width="34" height="26" rx="8" />;
+      return <rect className="badge" x="238" y="262" width="36" height="28" rx="8" />;
     case 'headset':
       return (
         <>
