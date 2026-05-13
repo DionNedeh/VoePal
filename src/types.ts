@@ -51,6 +51,7 @@ export interface CheckIn {
 export interface Customization {
   shell: string;
   face: string;
+  mouth: string;
   antenna: string;
   arms: string;
   accessory: string;
