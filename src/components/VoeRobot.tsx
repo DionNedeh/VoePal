@@ -187,9 +187,10 @@ function renderAccessory(kind: string) {
     case 'headset':
       return (
         <>
-          <path className="headset" d="M102 178c0-48 156-48 156 0" />
-          <rect className="headset" x="86" y="172" width="24" height="46" rx="10" />
-          <rect className="headset" x="250" y="172" width="24" height="46" rx="10" />
+          <path className="headset" d="M82 190c0-112 196-112 196 0" />
+          <rect className="headset" x="58" y="150" width="42" height="82" rx="17" />
+          <rect className="headset" x="260" y="150" width="42" height="82" rx="17" />
+          <path className="headset-mic" d="M274 226c0 28-18 44-48 46" />
         </>
       );
     default:
