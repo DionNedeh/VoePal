@@ -5,7 +5,7 @@ const emotionSignals: Record<Emotion, string[]> = {
   sad: ['sad', 'down', 'bummed', 'bad', 'not doing', 'rough', 'cry', 'hurt', 'lonely', 'upset', 'blue'],
   hopeful: ['trying', 'hope', 'hopeful', 'maybe', 'getting there', 'i can', 'keep going', 'better soon', 'still here'],
   anxious: ['anxious', 'nervous', 'worried', 'scared', 'panic', 'afraid', 'uneasy', 'spiral'],
-  stressed: ['stressed', 'too much', 'overwhelmed', 'can’t keep up', "can't keep up", 'busy', 'pressure', 'deadline'],
+  stressed: ['stressed', 'too much', 'overwhelmed', "can't keep up", 'busy', 'pressure', 'deadline'],
   angry: ['angry', 'mad', 'furious', 'annoyed', 'frustrated', 'irritated', 'unfair'],
   tired: ['tired', 'drained', 'exhausted', 'sleepy', 'worn out', 'no energy', 'burned out'],
   grateful: ['grateful', 'thankful', 'thanks', 'appreciate', 'lucky', 'blessed'],
@@ -17,7 +17,7 @@ const intentSignals: Record<Intent, string[]> = {
   asksAboutPal: ['how are you', 'how is yours', 'how about you', 'what about you', 'what about yours', 'and you'],
   celebration: ['great', 'proud', 'got it done', 'finished', 'won', 'awesome', 'nailed'],
   discouragement: ['not doing', 'bummed', 'trying', 'rough', 'bad day', 'hard day'],
-  overwhelm: ['too much', 'overwhelmed', 'stressed', 'can’t keep up', "can't keep up", 'pressure'],
+  overwhelm: ['too much', 'overwhelmed', 'stressed', "can't keep up", 'pressure'],
   fatigue: ['tired', 'drained', 'exhausted', 'sleepy', 'worn out'],
   gratitude: ['grateful', 'thankful', 'thanks', 'appreciate'],
   connection: ['alone', 'lonely', 'miss', 'how are you', 'how about you'],
@@ -35,7 +35,7 @@ const crisisSignals = [
   'not safe with myself'
 ];
 
-const highIntensitySignals = ['really', 'so ', 'very', 'extremely', 'always', 'never', 'can’t', "can't", 'panic', 'furious', 'exhausted'];
+const highIntensitySignals = ['really', 'so ', 'very', 'extremely', 'always', 'never', "can't", 'panic', 'furious', 'exhausted'];
 
 const responsePacks: Record<string, string[]> = {
   crisis: [
@@ -197,5 +197,5 @@ function summarizeEmotion(primary: Emotion, compound: Emotion[], intents: Intent
     ? 'asked about VoePal'
     : intents.filter((intent) => intent !== 'general').join(', ') || 'general check-in';
 
-  return `${emotionLabel} · ${intentLabel}`;
+  return `${emotionLabel} - ${intentLabel}`;
 }
