@@ -16,6 +16,14 @@ export const faceOptions = [
   { id: 'retro', label: 'Retro' }
 ];
 
+export const mouthOptions = [
+  { id: 'smile', label: 'Smile' },
+  { id: 'flat', label: 'Flat' },
+  { id: 'o', label: 'Tiny O' },
+  { id: 'beam', label: 'Beam' },
+  { id: 'zigzag', label: 'Zigzag' }
+];
+
 export const antennaOptions = [
   { id: 'dot', label: 'Dot' },
   { id: 'halo', label: 'Halo' },
@@ -51,6 +59,7 @@ export const roomOptions = [
 export const defaultCustomization: Customization = {
   shell: 'mint',
   face: 'bright',
+  mouth: 'smile',
   antenna: 'dot',
   arms: 'round',
   accessory: 'none',
