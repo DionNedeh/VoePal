@@ -17,6 +17,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--room-color, #f6f8ef);
 }
 
 button,
@@ -132,6 +133,11 @@ h3 {
   flex: 0 0 min(43vw, 470px);
   min-height: 620px;
   padding: 20px;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0) 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.12)),
+    var(--room-color, #f6f8ef);
 }
 
 .workspace {
@@ -170,6 +176,8 @@ h3 {
 
 .eye-line,
 .mouth,
+.visor-line,
+.visor-glint,
 .antenna path,
 .antenna ellipse,
 .arm-line,
@@ -187,16 +195,40 @@ h3 {
 .antenna circle,
 .antenna-fill,
 .accessory,
-.badge {
+.badge,
+.visor-dot {
   fill: #f7cb46;
+}
+
+.visor-line {
+  stroke: #8ad7c1;
+  stroke-width: 9;
+}
+
+.visor-glint {
+  stroke: rgba(246, 248, 239, 0.74);
+  stroke-width: 7;
+}
+
+.visor-dot {
+  fill: #f6f8ef;
+}
+
+.mouth-fill {
+  fill: #f7cb46;
+}
+
+.mouth-circle {
+  stroke-width: 9;
 }
 
 .scarf {
   fill: #f07d68;
 }
 
-.headset {
-  stroke-width: 9;
+.headset,
+.headset-mic {
+  stroke-width: 13;
 }
 
 .voe-robot.cheer {
@@ -360,6 +392,7 @@ h3 {
 }
 
 .primary-action,
+.secondary-action,
 .save-action,
 .icon-action,
 .text-action,
@@ -373,11 +406,22 @@ h3 {
 }
 
 .primary-action,
+.secondary-action,
 .save-action {
   gap: 8px;
   padding: 0 16px;
   background: #18243c;
   color: #f6f8ef;
+}
+
+.secondary-action {
+  background: #ecf1f5;
+  color: #172033;
+}
+
+.secondary-action.active {
+  background: #f7cb46;
+  color: #172033;
 }
 
 .save-action {
@@ -395,6 +439,10 @@ h3 {
   padding: 0 12px;
   background: #fff1de;
   color: #5e3d16;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .microcopy,
@@ -587,27 +635,46 @@ button:focus-visible {
 @media (max-width: 920px) {
   .hero-layout {
     flex-direction: column;
+    gap: 12px;
   }
 
   .robot-zone {
+    position: sticky;
+    top: 0;
+    z-index: 3;
     flex-basis: auto;
-    min-height: 390px;
-    padding-bottom: 0;
+    min-height: 342px;
+    padding: 8px 12px 12px;
+    border: 1px solid rgba(23, 32, 51, 0.1);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 16px 28px rgba(24, 36, 60, 0.11);
   }
 
   .voe-robot {
-    width: min(86vw, 330px);
+    width: min(76vw, 250px);
+  }
+
+  .stat-strip {
+    margin-top: 4px;
+  }
+
+  .stat-strip span {
+    min-height: 32px;
+    padding: 6px 9px;
+    font-size: 0.82rem;
   }
 }
 
 @media (max-width: 620px) {
   .stage-band {
-    width: min(100% - 20px, 1180px);
-    padding-top: 12px;
+    width: 100%;
+    padding: 10px 0 22px;
   }
 
   .topbar {
     align-items: flex-start;
+    width: calc(100% - 20px);
+    margin: 0 auto 6px;
   }
 
   h1 {
@@ -620,6 +687,21 @@ button:focus-visible {
 
   .tool-panel {
     padding: 14px;
+  }
+
+  .workspace {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+  }
+
+  .controls-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 44px 44px;
+  }
+
+  .primary-action,
+  .secondary-action {
+    padding: 0 10px;
   }
 
   .panel-header {
