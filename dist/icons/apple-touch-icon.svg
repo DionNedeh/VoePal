@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="VoePal app icon">
+  <rect width="180" height="180" rx="38" fill="#18243c"/>
+  <circle cx="90" cy="41" r="10" fill="#f7cb46"/>
+  <path d="M90 51v17" stroke="#f6f8ef" stroke-width="7" stroke-linecap="round"/>
+  <rect x="39" y="61" width="102" height="82" rx="28" fill="#8ad7c1"/>
+  <rect x="54" y="76" width="72" height="40" rx="17" fill="#18243c"/>
+  <circle cx="75" cy="96" r="6" fill="#f6f8ef"/>
+  <circle cx="105" cy="96" r="6" fill="#f6f8ef"/>
+  <path d="M75 121c9 9 21 9 30 0" fill="none" stroke="#18243c" stroke-width="7" stroke-linecap="round"/>
+</svg>

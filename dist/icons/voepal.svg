@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="VoePal robot icon">
+  <rect width="512" height="512" rx="96" fill="#18243c"/>
+  <circle cx="256" cy="116" r="28" fill="#f7cb46"/>
+  <path d="M256 144v46" stroke="#f6f8ef" stroke-width="18" stroke-linecap="round"/>
+  <rect x="116" y="172" width="280" height="236" rx="76" fill="#8ad7c1"/>
+  <rect x="156" y="214" width="200" height="106" rx="44" fill="#18243c"/>
+  <circle cx="214" cy="268" r="18" fill="#f6f8ef"/>
+  <circle cx="298" cy="268" r="18" fill="#f6f8ef"/>
+  <path d="M214 338c26 26 58 26 84 0" fill="none" stroke="#18243c" stroke-width="18" stroke-linecap="round"/>
+  <path d="M104 284h-38M446 284h-38" stroke="#f7cb46" stroke-width="26" stroke-linecap="round"/>
+  <path d="M184 408v38M328 408v38" stroke="#f6f8ef" stroke-width="26" stroke-linecap="round"/>
+</svg>
