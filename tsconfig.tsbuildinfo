@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/engine.test.ts","./src/engine.ts","./src/main.tsx","./src/options.ts","./src/speech.ts","./src/storage.ts","./src/types.ts","./src/components/optiongroup.tsx","./src/components/voerobot.tsx","./vite.config.ts"],"version":"5.9.3"}
