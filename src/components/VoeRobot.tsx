@@ -27,9 +27,8 @@ export function VoeRobot({ customization, animation }: VoeRobotProps) {
         <rect className="body" x="72" y="112" width="216" height="188" rx="66" fill={shell} />
         <rect className="faceplate" x="108" y="148" width="144" height="80" rx="32" />
         {renderFace(customization.face)}
-        {renderMouth(customization.mouth)}
         {renderAccessory(customization.accessory)}
-        <path className="belly-line" d="M132 252h96" />
+        {renderMouth(customization.mouth)}
         <g className="feet">
           <path d="M130 300v28" />
           <path d="M230 300v28" />
@@ -173,15 +172,15 @@ function renderFace(kind: string) {
 function renderMouth(kind = 'smile') {
   switch (kind) {
     case 'flat':
-      return <path className="mouth" d="M154 216h52" />;
+      return <path className="mouth" d="M132 252h96" />;
     case 'o':
-      return <circle className="mouth mouth-circle" cx="180" cy="216" r="12" />;
+      return <circle className="mouth mouth-circle" cx="180" cy="252" r="12" />;
     case 'beam':
-      return <rect className="mouth-fill" x="148" y="207" width="64" height="20" rx="10" />;
+      return <rect className="mouth-fill" x="134" y="242" width="92" height="20" rx="10" />;
     case 'zigzag':
-      return <path className="mouth" d="M148 218l16-10 16 10 16-10 16 10" />;
+      return <path className="mouth" d="M132 252l24-12 24 12 24-12 24 12" />;
     default:
-      return <path className="mouth" d="M152 214c18 18 38 18 56 0" />;
+      return <path className="mouth" d="M132 246c28 22 68 22 96 0" />;
   }
 }
 
@@ -190,7 +189,7 @@ function renderAccessory(kind: string) {
     case 'star':
       return <path className="accessory" d="M248 244l8 16 18 2-13 12 4 18-17-9-16 9 3-18-13-12 18-2z" />;
     case 'scarf':
-      return <path className="scarf" d="M112 254c48 20 92 20 136 0v24c-44 16-88 16-136 0z" />;
+      return <path className="scarf" d="M112 266c48 20 92 20 136 0v24c-44 16-88 16-136 0z" />;
     case 'badge':
       return <rect className="badge" x="238" y="262" width="36" height="28" rx="8" />;
     case 'headset':
